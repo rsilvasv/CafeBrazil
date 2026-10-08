@@ -2,393 +2,519 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cafe Brazil · Bondi</title>
-<meta name="description" content="Cafe Brazil — Brazilian cafe, restaurant & catering on Bondi Road. Feijoada, pão de queijo, açaí, coxinhas and Brazilian pizza nights.">
+<meta name="description" content="Cafe Brazil — Brazilian café, restaurant & catering on Bondi Road. Feijoada, pão de queijo, coxinhas, açaí and Brazilian pizza nights.">
+<meta name="theme-color" content="#0e3b2c">
+<meta property="og:title" content="Cafe Brazil · Bondi">
+<meta property="og:description" content="Real Brazilian food, right on Bondi Road.">
+<meta property="og:image" content="img/feijoada.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lilita+One&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --green:#009c3b; --green-d:#05502a; --yellow:#ffdf00; --yellow-s:#ffe9a8;
-    --blue:#002776; --cream:#fff7e8; --sand:#f3e4c8; --ink:#1b1a17; --muted:#6b6457;
-    --r:22px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:"DM Sans",system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.55;overflow-x:hidden}
-  img{display:block;max-width:100%}
-  a{color:inherit;text-decoration:none}
-  .wrap{width:min(1180px,100% - 32px);margin-inline:auto}
-  .display{font-family:"Lilita One",sans-serif;font-weight:400;letter-spacing:.01em;line-height:.95}
-  .script{font-family:"Great Vibes",cursive;font-weight:400}
+:root{
+  --bg:#f6f0e6; --surface:#fffdf8; --ink:#17201b; --muted:#5d655f; --line:rgba(23,32,27,.1);
+  --green:#0e3b2c; --green-2:#17533e; --leaf:#2f7a57;
+  --sun:#f2b632; --sun-soft:#fbe6b0; --clay:#d4693f;
+  --r:20px; --header:64px;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(14,59,44,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header) + 60px);-webkit-text-size-adjust:100%}
+html,body{overflow-x:clip}
+body{font-family:"Bricolage Grotesque",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+.serif{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
+.eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf)}
+h1,h2,h3{font-weight:700;letter-spacing:-.03em;line-height:1}
+h2{font-size:clamp(2.2rem,6vw,3.6rem);margin-top:10px}
+section{padding:80px 0}
+@media(min-width:900px){section{padding:120px 0}}
 
-  /* NAV */
-  nav{position:sticky;top:0;z-index:50;background:rgba(255,247,232,.88);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
-  .links{display:flex;gap:28px;font-weight:500}
-  .links a:hover{color:var(--green)}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:700;transition:transform .2s,box-shadow .2s;white-space:nowrap}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
-  .btn-green{background:var(--green);color:#fff}
-  .btn-yellow{background:var(--yellow);color:var(--blue)}
-  .btn-ghost{border:2px solid currentColor}
-  @media(max-width:820px){.links{display:none}}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 24px;border-radius:999px;font-weight:600;font-size:1rem;transition:transform .2s,background .2s;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn svg{width:18px;height:18px}
+.btn-sun{background:var(--sun);color:var(--green)}
+.btn-sun:hover{background:#f6c24f}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:var(--green-2)}
+.btn-glass{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px)}
 
-  /* LOGO */
-  .logo{display:block;height:54px;width:auto}
+/* Header */
+.hdr{position:fixed;inset:0 0 auto;z-index:60;height:var(--header);transition:background .3s,box-shadow .3s,color .3s;color:#fff}
+.hdr.solid{background:rgba(246,240,230,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);color:var(--ink)}
+.hdr .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{height:44px;width:auto;display:block}
+.nav{display:none;gap:30px;font-weight:500}
+.nav a{opacity:.85}.nav a:hover{opacity:1}
+.hdr .btn{height:42px;padding:0 18px;font-size:.92rem;display:none}
+.burger{width:44px;height:44px;display:grid;place-items:center;border-radius:12px}
+.burger span{display:block;width:22px;height:2px;background:currentColor;border-radius:2px;position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:22px;height:2px;background:currentColor;border-radius:2px}
+.burger span::before{top:-7px}.burger span::after{top:7px}
+@media(min-width:900px){.nav,.hdr .btn{display:flex}.burger{display:none}}
 
-  /* HERO */
-  .hero{position:relative;padding:56px 0 90px;overflow:hidden}
-  .hero::before{content:"";position:absolute;right:-180px;top:-140px;width:620px;height:620px;background:var(--yellow);border-radius:50%;opacity:.55;filter:blur(2px)}
-  .hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(0,0,0,.08);padding:6px 14px;border-radius:999px;font-size:.85rem;font-weight:500}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(0,156,59,.18)}
-  h1{font-size:clamp(3rem,8vw,6.4rem);margin:18px 0 18px;color:var(--green-d)}
-  h1 .script{display:block;font-size:.62em;color:var(--blue);margin-bottom:-.05em}
-  h1 em{font-style:normal;color:var(--green);position:relative}
-  h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.22em;background:var(--yellow);z-index:-1;border-radius:4px}
-  .lead{font-size:1.15rem;color:var(--muted);max-width:30ch}
-  .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-  .hero-art{position:relative;aspect-ratio:1/1}
-  .hero-art .main{position:absolute;inset:0 0 8% 8%;border-radius:50% 50% 40px 40px;overflow:hidden;box-shadow:0 30px 60px rgba(5,80,42,.25)}
-  .hero-art .main img{width:100%;height:100%;object-fit:cover}
-  .hero-art .mini{position:absolute;left:0;bottom:0;width:40%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:8px solid var(--cream);box-shadow:0 14px 30px rgba(0,0,0,.18)}
-  .hero-art .mini img{width:100%;height:100%;object-fit:cover}
-  .sticker{position:absolute;right:-6px;top:6%;width:120px;height:120px;border-radius:50%;background:var(--blue);color:var(--yellow);display:grid;place-items:center;text-align:center;font-family:"Lilita One";font-size:1rem;line-height:1.05;transform:rotate(10deg);animation:spin 18s linear infinite;box-shadow:0 10px 24px rgba(0,39,118,.35)}
-  .sticker span{display:block;font-size:1.9rem}
-  @keyframes spin{to{transform:rotate(370deg)}}
-  @media(max-width:880px){.hero .wrap{grid-template-columns:1fr}.hero-art{max-width:460px;width:100%;margin-inline:auto}}
+/* Mobile sheet */
+.sheet{position:fixed;inset:0;z-index:80;background:var(--green);color:#fff;display:flex;flex-direction:column;padding:20px 24px calc(28px + env(safe-area-inset-bottom));transform:translateY(-100%);transition:transform .45s cubic-bezier(.7,0,.2,1)}
+.sheet.open{transform:none}
+.sheet-top{display:flex;justify-content:space-between;align-items:center}
+.close{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);font-size:1.6rem;line-height:1}
+.sheet nav{display:flex;flex-direction:column;gap:6px;margin-top:40px}
+.sheet nav a{font-size:2.6rem;font-weight:700;letter-spacing:-.03em;padding:4px 0}
+.sheet nav a span{font-family:"Instrument Serif";font-style:italic;font-weight:400;color:var(--sun);font-size:1rem;margin-left:10px;letter-spacing:0}
+.sheet .foot{margin-top:auto;display:grid;gap:10px}
 
-  /* MARQUEE */
-  .marquee{background:var(--green);color:#fff;overflow:hidden;padding:16px 0;transform:rotate(-1.5deg);margin:-20px -10px 0;position:relative;z-index:2}
-  .track{display:flex;gap:40px;width:max-content;animation:scroll 32s linear infinite;font-family:"Lilita One";font-size:1.6rem;white-space:nowrap}
-  .track span:nth-child(even){color:var(--yellow)}
-  @keyframes scroll{to{transform:translateX(-50%)}}
+/* Hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;color:#fff;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);animation:zoom 14s ease-out forwards}
+@keyframes zoom{to{transform:scale(1)}}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,30,22,.55) 0%,rgba(10,30,22,.1) 30%,rgba(10,30,22,.55) 60%,rgba(10,30,22,.94) 100%)}
+.hero .wrap{padding:0 0 calc(110px + env(safe-area-inset-bottom))}
+.status{display:inline-flex;align-items:center;gap:8px;padding:7px 14px 7px 10px;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);font-size:.85rem;font-weight:500;border:1px solid rgba(255,255,255,.2)}
+.pulse{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 0 rgba(74,222,128,.7);animation:pulse 2s infinite}
+.status.closed .pulse{background:#fbbf24;animation:none}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+.hero h1{font-size:clamp(3rem,13vw,7.2rem);margin:18px 0 16px;max-width:11ch}
+.hero h1 .serif{color:var(--sun);font-size:1.05em;display:block;line-height:.95}
+.hero p{font-size:1.08rem;opacity:.9;max-width:34ch}
+.hero .ctas{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.hero .ctas .btn{flex:1 1 auto}
+@media(min-width:600px){.hero .ctas .btn{flex:0 0 auto}}
+@media(min-width:900px){.hero .wrap{padding-bottom:90px}.hero h1{max-width:12ch}}
 
-  section{padding:100px 0}
-  .sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
-  h2{font-size:clamp(2.4rem,5vw,4rem);color:var(--green-d)}
-  h2 .script{color:var(--blue);font-size:.8em;display:block}
-  .sub{color:var(--muted);max-width:42ch}
+/* Facts strip */
+.facts{background:var(--green);color:#fff;padding:18px 0;overflow:hidden}
+.facts-track{display:flex;gap:44px;width:max-content;animation:marq 40s linear infinite;font-weight:500}
+.facts-track span{display:flex;align-items:center;gap:12px;white-space:nowrap}
+.facts-track span::after{content:"✦";color:var(--sun);margin-left:32px}
+@keyframes marq{to{transform:translateX(-50%)}}
 
-  /* FAVOURITES */
-  .favs{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-  .fav{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:0 2px 0 rgba(0,0,0,.04);transition:transform .25s}
-  .fav:hover{transform:translateY(-6px) rotate(-.5deg)}
-  .fav .ph{aspect-ratio:4/5;overflow:hidden}
-  .fav img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-  .fav:hover img{transform:scale(1.06)}
-  .fav .tx{padding:16px 18px 20px;display:flex;justify-content:space-between;gap:10px;align-items:start}
-  .fav h3{font-family:"Lilita One";font-weight:400;font-size:1.3rem;color:var(--green-d);line-height:1.1}
-  .fav p{font-size:.88rem;color:var(--muted)}
-  .price{font-family:"Lilita One";background:var(--yellow);color:var(--blue);padding:4px 10px;border-radius:999px;font-size:1rem;white-space:nowrap}
-  @media(max-width:900px){.favs{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:480px){.favs{grid-template-columns:1fr}}
+/* Favourites */
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.head p{color:var(--muted);max-width:38ch}
+.carousel{display:grid;grid-auto-flow:column;grid-auto-columns:78%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 16px 18px;margin:0 -16px;scrollbar-width:none;overscroll-behavior-x:contain}
+.carousel::-webkit-scrollbar{display:none}
+@media(min-width:700px){.carousel{grid-auto-columns:42%}}
+@media(min-width:1000px){.carousel{grid-auto-flow:row;grid-template-columns:repeat(4,1fr);overflow:visible;margin:0;padding:0}}
+.dish{scroll-snap-align:start;background:var(--surface);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.dish .ph{aspect-ratio:4/5;overflow:hidden;position:relative}
+.dish img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.dish:hover img{transform:scale(1.05)}
+.dish .pill{position:absolute;top:12px;left:12px;background:var(--surface);color:var(--green);font-weight:700;font-size:.85rem;padding:5px 11px;border-radius:999px}
+.dish .tx{padding:16px 18px 20px}
+.dish h3{font-size:1.25rem;display:flex;justify-content:space-between;gap:10px}
+.dish h3 b{color:var(--clay);font-weight:700}
+.dish p{color:var(--muted);font-size:.92rem;margin-top:6px}
 
-  /* MENU */
-  #menu{background:var(--green-d);color:var(--cream);border-radius:48px 48px 0 0}
-  #menu h2{color:var(--cream)} #menu h2 .script{color:var(--yellow)} #menu .sub{color:rgba(255,247,232,.7)}
-  .tabs{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin-bottom:34px;scrollbar-width:none}
-  .tabs::-webkit-scrollbar{display:none}
-  .tab{flex:none;border:2px solid rgba(255,247,232,.25);background:transparent;color:var(--cream);padding:10px 20px;border-radius:999px;font:500 1rem "DM Sans";cursor:pointer;transition:.2s}
-  .tab:hover{border-color:var(--yellow)}
-  .tab.on{background:var(--yellow);border-color:var(--yellow);color:var(--blue);font-weight:700}
-  .items{display:grid;grid-template-columns:1fr 1fr;gap:6px 56px}
-  .item{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:18px 0;border-bottom:1px dashed rgba(255,247,232,.2);animation:fade .4s both}
-  .item h4{font-size:1.12rem;font-weight:700;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-  .item .p{font-family:"Lilita One";color:var(--yellow);font-size:1.25rem}
-  .item p{grid-column:1/-1;color:rgba(255,247,232,.68);font-size:.95rem}
-  .tag{font-size:.68rem;font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:6px;background:rgba(255,223,0,.15);color:var(--yellow)}
-  .note{margin-top:28px;color:rgba(255,247,232,.65);font-size:.92rem}
-  @keyframes fade{from{opacity:0;transform:translateY(8px)}}
-  @media(max-width:760px){.items{grid-template-columns:1fr}}
+/* Menu */
+#menu{background:var(--surface);border-radius:32px 32px 0 0;padding-bottom:40px}
+.chips{position:sticky;top:var(--header);z-index:40;background:rgba(255,253,248,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);margin-bottom:8px}
+.chips-row{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch;max-width:1160px;margin:0 auto}
+.chips-row::-webkit-scrollbar{display:none}
+.chip{flex:none;height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-weight:500;font-size:.92rem;transition:.2s}
+.chip.on{background:var(--green);border-color:var(--green);color:#fff}
+.cat{padding:36px 0 8px}
+.cat h3{font-size:1.9rem;display:flex;align-items:baseline;gap:12px}
+.cat h3 .serif{color:var(--leaf);font-size:1.1rem;letter-spacing:0}
+.cat .note{color:var(--muted);font-size:.88rem;margin-top:6px}
+.items{display:grid;gap:0 56px;margin-top:10px}
+@media(min-width:820px){.items{grid-template-columns:1fr 1fr}}
+.it{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.it .thumb{flex:none;width:64px;height:64px;border-radius:14px;object-fit:cover}
+.it .body{flex:1;min-width:0}
+.it .top{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.it h4{font-size:1.06rem;font-weight:600;letter-spacing:-.01em}
+.it .p{font-weight:700;color:var(--green);white-space:nowrap}
+.it p{color:var(--muted);font-size:.9rem;margin-top:3px}
+.tag{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.06em;padding:2px 6px;border-radius:6px;background:var(--sun-soft);color:#7a5200;margin-left:6px;vertical-align:2px}
 
-  /* PIZZA */
-  #pizza{background:var(--blue);color:#fff;position:relative;overflow:hidden}
-  #pizza .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-  #pizza h2{color:#fff} #pizza h2 .script{color:var(--yellow)}
-  #pizza .sub{color:rgba(255,255,255,.75);margin:18px 0 28px}
-  .pz-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .pz-grid img{border-radius:var(--r);aspect-ratio:1;object-fit:cover;width:100%}
-  .pz-grid img:first-child{transform:rotate(-3deg)} .pz-grid img:last-child{transform:rotate(3deg) translateY(30px)}
-  .badge{display:inline-block;background:var(--yellow);color:var(--blue);font-weight:700;padding:6px 14px;border-radius:999px;font-size:.85rem}
-  @media(max-width:860px){#pizza .wrap{grid-template-columns:1fr}}
+/* Pizza */
+.pizza{background:var(--green);color:#fff;border-radius:32px;overflow:hidden;display:grid}
+.pizza .tx{padding:40px 24px}
+.pizza h2 .serif{color:var(--sun)}
+.pizza p{opacity:.82;margin:16px 0 26px;max-width:40ch}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--sun);color:var(--green);font-weight:700;font-size:.8rem;padding:6px 12px;border-radius:999px}
+.pz-imgs{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.pz-imgs img{width:100%;height:100%;aspect-ratio:1;object-fit:cover}
+@media(min-width:860px){.pizza{grid-template-columns:1fr 1fr;align-items:center}.pizza .tx{padding:64px}.pz-imgs{height:100%}.pz-imgs img{aspect-ratio:auto}}
 
-  /* CATERING */
-  .cater{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;background:var(--sand);border-radius:36px;padding:56px;position:relative;overflow:hidden}
-  .cater::after{content:"";position:absolute;right:-60px;bottom:-60px;width:260px;height:260px;border-radius:50%;background:var(--green);opacity:.12}
-  .big{font-family:"Lilita One";font-size:clamp(4rem,10vw,7rem);color:var(--green);line-height:.9}
-  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 26px}
-  .chips span{background:#fff;padding:8px 14px;border-radius:999px;font-weight:500;font-size:.92rem}
-  @media(max-width:760px){.cater{grid-template-columns:1fr;padding:32px 22px}}
+/* Gallery */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.gallery a{border-radius:16px;overflow:hidden;position:relative;aspect-ratio:1}
+.gallery a:nth-child(1){grid-row:span 2;aspect-ratio:auto}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gallery a:hover img{transform:scale(1.05)}
+@media(min-width:800px){.gallery{grid-template-columns:repeat(4,1fr)}}
 
-  /* VISIT */
-  .visit{display:grid;grid-template-columns:1fr 1.2fr;gap:28px}
-  .card{background:#fff;border-radius:var(--r);padding:34px}
-  .row{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid rgba(0,0,0,.07)}
-  .row:last-of-type{border:0}
-  .ic{flex:none;width:42px;height:42px;border-radius:12px;background:var(--yellow-s);display:grid;place-items:center;font-size:1.2rem}
-  .row b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-  .map{border-radius:var(--r);overflow:hidden;min-height:380px;background:var(--sand)}
-  .map iframe{width:100%;height:100%;min-height:380px;border:0;filter:saturate(.9)}
-  @media(max-width:820px){.visit{grid-template-columns:1fr}}
+/* Catering */
+.cater{background:var(--sun);border-radius:32px;padding:40px 24px;display:grid;gap:28px;position:relative;overflow:hidden;color:var(--green)}
+.cater .eyebrow{color:var(--green);opacity:.7}
+.cater p{max-width:40ch;margin-top:12px}
+.cater .num{font-size:clamp(5rem,22vw,9rem);font-weight:800;letter-spacing:-.06em;line-height:.85}
+.cater .num small{display:block;font-size:1.1rem;letter-spacing:0;font-weight:600;margin-top:10px}
+.salg{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 24px}
+.salg span{background:rgba(255,255,255,.55);padding:8px 14px;border-radius:999px;font-weight:500;font-size:.92rem}
+@media(min-width:820px){.cater{grid-template-columns:1.3fr 1fr;align-items:center;padding:64px}}
 
-  /* FOOTER */
-  footer{background:var(--ink);color:#d9d3c7;padding:60px 0 30px}
-  footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center}
-  .soc{display:flex;gap:12px}
-  .soc a{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:.2s}
-  .soc a:hover{background:var(--green)}
-  .copy{width:100%;border-top:1px solid rgba(255,255,255,.1);padding-top:22px;margin-top:20px;font-size:.85rem;color:#8f887b}
-  .flagbar{height:8px;background:linear-gradient(90deg,var(--green) 0 40%,var(--yellow) 40% 70%,var(--blue) 70%)}
+/* Visit */
+.visit{display:grid;gap:16px}
+.card{background:var(--surface);border-radius:var(--r);padding:8px 22px;box-shadow:var(--shadow)}
+.row{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.row:last-child{border:0}
+.ic{flex:none;width:44px;height:44px;border-radius:12px;background:var(--sun-soft);display:grid;place-items:center;color:var(--green)}
+.ic svg{width:20px;height:20px}
+.row small{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600;margin-bottom:2px}
+.row strong{font-weight:600}
+.map{border-radius:var(--r);overflow:hidden;min-height:320px;box-shadow:var(--shadow)}
+.map iframe{display:block;width:100%;height:100%;min-height:320px;border:0}
+@media(min-width:860px){.visit{grid-template-columns:1fr 1.3fr}}
 
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
-  .reveal.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+/* Footer */
+footer{background:var(--green);color:rgba(255,255,255,.75);padding:56px 0 calc(110px + env(safe-area-inset-bottom));margin-top:80px}
+footer .wrap{display:grid;gap:24px}
+footer .big{font-size:clamp(2rem,7vw,3.4rem);font-weight:700;color:#fff;letter-spacing:-.03em;line-height:1.05}
+footer .big .serif{color:var(--sun)}
+.soc{display:flex;gap:10px}
+.soc a{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;color:#fff;transition:.2s}
+.soc a:hover{background:var(--sun);color:var(--green)}
+.soc svg{width:20px;height:20px}
+.copy{font-size:.82rem;border-top:1px solid rgba(255,255,255,.12);padding-top:20px}
+@media(min-width:900px){footer{padding-bottom:40px}}
+
+/* Mobile action bar */
+.bar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:50;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:6px;border-radius:22px;background:rgba(14,59,44,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 12px 30px rgba(0,0,0,.25);transform:translateY(140%);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.bar.show{transform:none}
+.bar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:54px;border-radius:16px;color:#fff;font-size:.74rem;font-weight:600}
+.bar a svg{width:20px;height:20px}
+.bar a.main{background:var(--sun);color:var(--green)}
+@media(min-width:900px){.bar{display:none}}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 
-<!-- Logo: "Cafe" in script + "BRAZIL" over the Brazilian flag -->
-<svg width="0" height="0" style="position:absolute">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="logo" viewBox="0 0 300 130">
       <rect x="62" y="52" width="232" height="74" rx="12" fill="#009c3b"/>
       <polygon points="178,56 286,89 178,122 70,89" fill="#ffdf00"/>
       <circle cx="178" cy="89" r="25" fill="#002776"/>
       <path d="M154 85 q24 -8 48 6" stroke="#fff" stroke-width="4" fill="none"/>
-      <text x="4" y="50" font-family="Great Vibes" font-size="62" fill="#002776">Cafe</text>
-      <text x="178" y="110" text-anchor="middle" font-family="Lilita One" font-size="58" fill="#fff" stroke="#05502a" stroke-width="5" paint-order="stroke" letter-spacing="1">BRAZIL</text>
+      <text x="4" y="50" font-family="Great Vibes" font-size="62" fill="currentColor">Cafe</text>
+      <text x="178" y="110" text-anchor="middle" font-family="Bricolage Grotesque" font-weight="800" font-size="54" fill="#fff" stroke="#0e3b2c" stroke-width="6" paint-order="stroke" letter-spacing="1">BRAZIL</text>
     </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></g></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></g></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></g></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></symbol>
   </defs>
 </svg>
 
-<nav>
+<header class="hdr" id="hdr">
   <div class="wrap">
     <a href="#top" aria-label="Cafe Brazil home"><svg class="logo" viewBox="0 0 300 130"><use href="#logo"/></svg></a>
-    <div class="links">
+    <nav class="nav">
       <a href="#menu">Menu</a><a href="#pizza">Pizza nights</a><a href="#catering">Catering</a><a href="#visit">Visit</a>
-    </div>
-    <a class="btn btn-green" href="tel:0293869595">Call 9386 9595</a>
-  </div>
-</nav>
-
-<header class="hero" id="top">
-  <div class="wrap">
-    <div>
-      <span class="eyebrow"><span class="dot"></span> Open every day · 195 Bondi Road</span>
-      <h1 class="display"><span class="script">um pedacinho do</span><em>Brazil</em> in Bondi</h1>
-      <p class="lead">Homestyle Brazilian cooking, real coffee and cheese bread straight from the oven. Café, restaurant &amp; catering since forever.</p>
-      <div class="cta">
-        <a class="btn btn-green" href="#menu">See the menu →</a>
-        <a class="btn btn-ghost" href="#visit">Find us</a>
-      </div>
-    </div>
-    <div class="hero-art">
-      <div class="main"><img src="img/feijoada.jpg" alt="Feijoada with rice, farofa, greens and orange"></div>
-      <div class="mini"><img src="img/x-churrasco.jpg" alt="X-Churrasco steak roll"></div>
-      <div class="sticker"><div><span>100%</span>Brasileiro</div></div>
-    </div>
+    </nav>
+    <a class="btn btn-sun" href="tel:0293869595"><svg><use href="#i-phone"/></svg>9386 9595</a>
+    <button class="burger" id="burger" aria-label="Open menu"><span></span></button>
   </div>
 </header>
 
-<div class="marquee" aria-hidden="true">
-  <div class="track">
-    <span>Pão de Queijo</span><span>★</span><span>Feijoada</span><span>★</span><span>Coxinha</span><span>★</span><span>Açaí</span><span>★</span><span>Caipirinha</span><span>★</span><span>Brigadeiro</span><span>★</span><span>Pastel</span><span>★</span><span>Moqueca</span><span>★</span>
-    <span>Pão de Queijo</span><span>★</span><span>Feijoada</span><span>★</span><span>Coxinha</span><span>★</span><span>Açaí</span><span>★</span><span>Caipirinha</span><span>★</span><span>Brigadeiro</span><span>★</span><span>Pastel</span><span>★</span><span>Moqueca</span><span>★</span>
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheet-top">
+    <svg class="logo" viewBox="0 0 300 130" style="color:#fff"><use href="#logo"/></svg>
+    <button class="close" id="close" aria-label="Close menu">×</button>
+  </div>
+  <nav>
+    <a href="#menu">Menu <span>o cardápio</span></a>
+    <a href="#pizza">Pizza nights <span>novidade</span></a>
+    <a href="#catering">Catering <span>festa</span></a>
+    <a href="#visit">Visit us <span>venha</span></a>
+  </nav>
+  <div class="foot">
+    <a class="btn btn-sun" href="tel:0293869595"><svg><use href="#i-phone"/></svg>Call (02) 9386 9595</a>
+    <a class="btn btn-glass" href="https://www.instagram.com/cafebrazilbondi/" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>@cafebrazilbondi</a>
   </div>
 </div>
 
-<section id="favs">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2 class="display"><span class="script">os favoritos</span>House favourites</h2>
-      <p class="sub">The plates our regulars come back for, week after week.</p>
-    </div>
-    <div class="favs">
-      <article class="fav reveal"><div class="ph"><img src="img/feijoada.jpg" alt="Feijoada" loading="lazy"></div><div class="tx"><div><h3>Feijoada</h3><p>Black bean &amp; meat stew, farofa, greens</p></div><span class="price">$19</span></div></article>
-      <article class="fav reveal"><div class="ph"><img src="img/prato-feito.jpg" alt="Prato Feito" loading="lazy"></div><div class="tx"><div><h3>Prato Feito</h3><p>Rump steak, rice, beans &amp; vinaigrette</p></div><span class="price">$16</span></div></article>
-      <article class="fav reveal"><div class="ph"><img src="img/x-churrasco.jpg" alt="X-Churrasco" loading="lazy"></div><div class="tx"><div><h3>X-Churrasco</h3><p>Rump steak, melted cheese, French roll</p></div><span class="price">$12.5</span></div></article>
-      <article class="fav reveal"><div class="ph"><img src="img/chicken-roll.jpg" alt="Portuguese chicken roll" loading="lazy"></div><div class="tx"><div><h3>Portuguese Chicken Roll</h3><p>Schnitzel, mayo, Portuguese chilli</p></div><span class="price">$10.5</span></div></article>
-    </div>
-  </div>
-</section>
-
-<section id="menu">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2 class="display"><span class="script">o cardápio</span>The menu</h2>
-      <p class="sub">GF = gluten free · V = vegetarian. Ask us about dietary needs.</p>
-    </div>
-    <div class="tabs" role="tablist" id="tabs"></div>
-    <div class="items" id="items"></div>
-    <p class="note" id="note"></p>
-  </div>
-</section>
-
-<section id="pizza">
-  <div class="wrap">
-    <div class="reveal">
-      <span class="badge">🍕 New · Nights only</span>
-      <h2 class="display" style="margin-top:16px"><span class="script">chegou a</span>Brazilian pizza in Bondi</h2>
-      <p class="sub">Cafe Brazil teamed up with <b>Sampa Pizza</b>. By day, the menu you love. By night, São Paulo–style pizza — think calabresa, catupiry and the sweet ones with Nutella &amp; strawberries.</p>
-      <a class="btn btn-yellow" href="https://www.instagram.com/cafebrazilbondi/" target="_blank" rel="noopener">See the pizzas on Instagram →</a>
-    </div>
-    <div class="pz-grid reveal">
-      <img src="img/pizza.jpg" alt="Brazilian style pizza with olives and oregano" loading="lazy">
-      <img src="img/nutella-pizza.jpg" alt="Nutella and strawberry dessert pizza" loading="lazy">
-    </div>
-  </div>
-</section>
-
-<section id="catering">
-  <div class="wrap">
-    <div class="cater reveal">
-      <div>
-        <h2 class="display"><span class="script">festa?</span>Catering for your party</h2>
-        <p class="sub" style="margin-top:14px">Birthdays, office lunches, watch parties — we bring the salgadinhos. Freshly made, ready to share.</p>
-        <div class="chips"><span>Coxinha</span><span>Kibe</span><span>Pão de Queijo</span><span>Brigadeiro</span></div>
-        <a class="btn btn-green" href="tel:0293869595">Book catering</a>
-      </div>
-      <div style="align-self:center;position:relative;z-index:1">
-        <div class="big">100</div>
-        <p style="font-weight:700;font-size:1.2rem">pieces from <span class="price">$120</span></p>
-        <p class="sub">Mix and match your favourites.</p>
+<main id="top">
+  <section class="hero" style="padding:0">
+    <div class="hero-bg"><img src="img/feijoada.jpg" alt="Feijoada with rice, farofa, greens and orange" fetchpriority="high"></div>
+    <div class="wrap">
+      <span class="status" id="status"><span class="pulse"></span><span id="status-txt">Open every day · 8:30am – 4:30pm</span></span>
+      <h1>Real Brazilian food <span class="serif">on Bondi Road.</span></h1>
+      <p>Feijoada, pão de queijo fresh from the oven, proper coffee and a caipirinha when the sun's out.</p>
+      <div class="ctas">
+        <a class="btn btn-sun" href="#menu">See the menu <svg><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-glass" href="https://maps.google.com/?q=Cafe+Brazil+195+Bondi+Road+Bondi+NSW" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Directions</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="visit" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2 class="display"><span class="script">venha nos visitar</span>Come say olá</h2>
-    </div>
-    <div class="visit">
-      <div class="card reveal">
-        <div class="row"><div class="ic">📍</div><div><b>Address</b>195 Bondi Road, Bondi Beach NSW 2026</div></div>
-        <div class="row"><div class="ic">🕗</div><div><b>Café hours</b>Monday – Sunday · 8:30am – 4:30pm<br><small style="color:var(--muted)">Pizza nights with Sampa Pizza in the evenings</small></div></div>
-        <div class="row"><div class="ic">📞</div><div><b>Phone</b><a href="tel:0293869595">(02) 9386 9595</a></div></div>
-        <div class="cta"><a class="btn btn-green" href="https://maps.google.com/?q=195+Bondi+Road+Bondi+NSW+2026" target="_blank" rel="noopener">Get directions</a></div>
-      </div>
-      <div class="map reveal">
-        <iframe title="Map to Cafe Brazil" loading="lazy" src="https://maps.google.com/maps?q=Cafe%20Brazil%2C%20195%20Bondi%20Road%2C%20Bondi%20NSW%202026&z=16&output=embed"></iframe>
-      </div>
+  <div class="facts" aria-hidden="true">
+    <div class="facts-track">
+      <span>Open 7 days</span><span>Gluten-free options</span><span>Brazilian pizza nights</span><span>Catering for parties</span><span>Açaí bowls</span><span>Caipirinhas</span>
+      <span>Open 7 days</span><span>Gluten-free options</span><span>Brazilian pizza nights</span><span>Catering for parties</span><span>Açaí bowls</span><span>Caipirinhas</span>
     </div>
   </div>
-</section>
 
-<div class="flagbar"></div>
+  <section id="favs">
+    <div class="wrap">
+      <div class="head rv">
+        <div><span class="eyebrow">Os favoritos</span><h2>House <span class="serif">favourites</span></h2></div>
+        <p>The plates our regulars come back for, week after week.</p>
+      </div>
+      <div class="carousel">
+        <article class="dish rv"><div class="ph"><img src="img/feijoada.jpg" alt="Feijoada" loading="lazy"><span class="pill">Gluten free</span></div><div class="tx"><h3>Feijoada <b>$19</b></h3><p>Black bean &amp; pork stew, rice, farofa, greens &amp; orange.</p></div></article>
+        <article class="dish rv"><div class="ph"><img src="img/prato-feito.jpg" alt="Prato Feito" loading="lazy"><span class="pill">Classic</span></div><div class="tx"><h3>Prato Feito <b>$16</b></h3><p>Rump steak, rice, brown beans &amp; vinaigrette.</p></div></article>
+        <article class="dish rv"><div class="ph"><img src="img/x-churrasco.jpg" alt="X-Churrasco" loading="lazy"><span class="pill">Best seller</span></div><div class="tx"><h3>X-Churrasco <b>$12.5</b></h3><p>Rump steak &amp; melted cheese on a French roll.</p></div></article>
+        <article class="dish rv"><div class="ph"><img src="img/chicken-roll.jpg" alt="Portuguese chicken roll" loading="lazy"><span class="pill">Lunch</span></div><div class="tx"><h3>Chicken Roll <b>$10.5</b></h3><p>Crumbed chicken, mayo &amp; Portuguese chilli.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="wrap">
+      <div class="head rv" style="margin-bottom:20px">
+        <div><span class="eyebrow">O cardápio</span><h2>The <span class="serif">menu</span></h2></div>
+        <p><span class="tag" style="margin:0">GF</span> gluten free &nbsp; <span class="tag" style="margin:0">V</span> vegetarian</p>
+      </div>
+    </div>
+    <div class="chips"><div class="chips-row" id="chips"></div></div>
+    <div class="wrap" id="cats"></div>
+  </section>
+
+  <section id="pizza" style="padding-top:40px">
+    <div class="wrap">
+      <div class="pizza rv">
+        <div class="tx">
+          <span class="badge">🍕 New · Evenings</span>
+          <h2>Brazilian pizza <span class="serif">has landed.</span></h2>
+          <p>We've teamed up with <b>Sampa Pizza</b>. Same café by day — by night, São Paulo–style pizzas, plus the sweet ones with Nutella &amp; strawberries.</p>
+          <a class="btn btn-sun" href="https://www.instagram.com/cafebrazilbondi/" target="_blank" rel="noopener">See the pizzas <svg><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="pz-imgs">
+          <img src="img/pizza.jpg" alt="Brazilian style pizza with olives and oregano" loading="lazy">
+          <img src="img/nutella-pizza.jpg" alt="Nutella and strawberry pizza" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="catering" style="padding-top:0">
+    <div class="wrap">
+      <div class="cater rv">
+        <div>
+          <span class="eyebrow">Festa?</span>
+          <h2>Catering for <span class="serif">your party</span></h2>
+          <p>Birthdays, office lunches, game days — we bring the salgadinhos, freshly made and ready to share.</p>
+          <div class="salg"><span>Coxinha</span><span>Kibe</span><span>Pão de queijo</span><span>Brigadeiro</span></div>
+          <a class="btn btn-green" href="tel:0293869595"><svg><use href="#i-phone"/></svg>Book catering</a>
+        </div>
+        <div class="num">100<small>pieces from $120 · mix &amp; match</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" style="padding-top:0">
+    <div class="wrap">
+      <div class="head rv">
+        <div><span class="eyebrow">@cafebrazilbondi</span><h2>Fresh from <span class="serif">the kitchen</span></h2></div>
+        <a class="btn btn-green" href="https://www.instagram.com/cafebrazilbondi/" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>Follow us</a>
+      </div>
+      <div class="gallery rv">
+        <a href="https://www.instagram.com/cafebrazilbondi/" target="_blank" rel="noopener"><img src="img/prato-feito.jpg" alt="Prato feito" loading="lazy"></a>
+        <a href="https://www.instagram.com/cafebrazilbondi/" target="_blank" rel="noopener"><img src="img/pizza.jpg" alt="Pizza" loading="lazy"></a>
+        <a href="https://www.instagram.com/cafebrazilbondi/" target="_blank" rel="noopener"><img src="img/x-churrasco.jpg" alt="X-Churrasco" loading="lazy"></a>
+        <a href="https://www.instagram.com/cafebrazilbondi/" target="_blank" rel="noopener"><img src="img/nutella-pizza.jpg" alt="Nutella pizza" loading="lazy"></a>
+        <a href="https://www.instagram.com/cafebrazilbondi/" target="_blank" rel="noopener"><img src="img/chicken-roll.jpg" alt="Chicken roll" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" style="padding-top:0">
+    <div class="wrap">
+      <div class="head rv"><div><span class="eyebrow">Venha nos visitar</span><h2>Come <span class="serif">say olá</span></h2></div></div>
+      <div class="visit">
+        <div class="card rv">
+          <div class="row"><div class="ic"><svg><use href="#i-pin"/></svg></div><div><small>Address</small><strong>195 Bondi Road</strong><br>Bondi Beach NSW 2026</div></div>
+          <div class="row"><div class="ic"><svg><use href="#i-clock"/></svg></div><div><small>Hours</small><strong>Every day · 8:30am – 4:30pm</strong><br>Pizza nights with Sampa Pizza</div></div>
+          <div class="row"><div class="ic"><svg><use href="#i-phone"/></svg></div><div><small>Phone</small><a href="tel:0293869595"><strong>(02) 9386 9595</strong></a></div></div>
+        </div>
+        <div class="map rv">
+          <iframe title="Map to Cafe Brazil" loading="lazy" src="https://maps.google.com/maps?q=Cafe%20Brazil%2C%20195%20Bondi%20Road%2C%20Bondi%20NSW%202026&z=16&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
 <footer>
   <div class="wrap">
-    <svg class="logo" viewBox="0 0 300 130" style="height:64px"><use href="#logo"/></svg>
+    <svg class="logo" viewBox="0 0 300 130" style="height:64px;color:#fff"><use href="#logo"/></svg>
+    <p class="big">See you on <span class="serif">Bondi Road.</span></p>
     <div class="soc">
-      <a href="https://www.instagram.com/cafebrazilbondi/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-      <a href="https://www.facebook.com/cafebrazil.bondird" target="_blank" rel="noopener" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg></a>
+      <a href="https://www.instagram.com/cafebrazilbondi/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+      <a href="https://www.facebook.com/cafebrazil.bondird" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+      <a href="tel:0293869595" aria-label="Call"><svg><use href="#i-phone"/></svg></a>
     </div>
-    <p class="copy">© <span id="yr"></span> Cafe Brazil · Café, Restaurant &amp; Catering · Bondi, Sydney</p>
+    <p class="copy">© <span id="yr"></span> Cafe Brazil · Café, Restaurant &amp; Catering · 195 Bondi Road, Bondi</p>
   </div>
 </footer>
 
-<script>
-const MENU = {
-  "Breakfast": { items: [
-    ["Big Breakfast", "17", "2 fried eggs, bacon, sausage, hash brown, grilled tomato, baked beans & toast"],
-    ["Special Breakfast", "15.5", "Up to 2 of: egg, cassava chips, Chinese broccoli or mushroom & zucchini — with rice, brown beans & vinaigrette"],
-    ["Smashed Avocado", "15.5", "Semi-sundried tomatoes, feta & lemon on sourdough"],
-    ["Vegetarian Breakfast", "16.5", "2 fried eggs, hash brown, mushroom, zucchini, tomato, beans & toast", "V"],
-    ["Açaí Bowl", "12", "Pure açaí with muesli & banana", "V"],
-    ["Omelette", "15", "3 eggs, mushroom, capsicum, onion & ham, with toast"],
-    ["Eggs Any Style", "9", "Fried, scrambled or poached, with toast"],
-    ["Bacon & Egg Roll", "8.5", "With your choice of sauce"],
-    ["Misto Quente", "7.5", "Melted cheese & ham on a French roll"],
-    ["Pão na Chapa", "4", "Grilled French roll with butter"],
-    ["Vegemite Toast", "5", "Toasted Turkish bread, butter & Vegemite"],
-    ["Toasties", "6.5+", "1, 2 or 3 fillings: ham, cheese, tomato, chicken, avocado"]
-  ], note: "Sides: hash brown $2 · beans, mushroom or tomato $2.5 · avocado or bacon $3.5"},
-  "Salgados": { items: [
-    ["Pão de Queijo", "2.5", "Brazilian cheese bread", "GF"],
-    ["Coxinha", "5", "Chicken croquette with chicken breast & potato"],
-    ["Pastel", "9", "Crispy fried pastry — cheese or meat"],
-    ["Kibe", "4.5", "Bulgur wheat with minced meat"],
-    ["Rissole de Camarão", "3.5", "Prawn rissole"],
-    ["Bolinho de Bacalhau", "3", "Cod fish croquette"],
-    ["Hand-cut Cassava Chips", "8", "Crispy aipim fries"],
-    ["Hot Chips", "6.5", ""]
-  ]},
-  "Pratos": { items: [
-    ["Feijoada", "19", "Black bean stew with meats, rice, Chinese broccoli, farofa & orange", "GF"],
-    ["Moqueca de Peixe", "21", "Fish of the day in coconut milk & dendê with capsicum, tomato & onion. With rice", "GF"],
-    ["Bobó de Camarão", "20", "Prawns in a creamy cassava & coconut sauce with dendê. With rice", "GF"],
-    ["Chicken Strogonoff", "18", "Chicken & mushroom in a creamy tomato sauce, rice & potato straws", "GF"],
-    ["Prato Feito", "16", "Rump steak, chicken or fish with rice, brown beans & vinaigrette"],
-    ["Vegetarian Prato Feito", "16", "Rice, brown beans, salad & your veggie picks", "GF · V"]
-  ], note: "Add: farofa 50c · egg $1.5 · Chinese broccoli or potato salad $2.5 · extra meat $3.5"},
-  "Burgers & Rolls": { items: [
-    ["X-Churrasco", "12.5", "Rump steak, melted cheese, mayo & lettuce on a French roll"],
-    ["B.L.A.T", "12.5", "Bacon, lettuce, avocado & tomato on toasted Turkish"],
-    ["Chicken Burger", "11.5", "Chicken breast, lettuce, tomato, cheese & mayo"],
-    ["X-Burger", "10.5", "Beef patty, cheese, lettuce, tomato & mayo"],
-    ["Portuguese Chicken Roll", "10.5", "Chicken schnitzel, lettuce, mayo & Portuguese chilli"],
-    ["Carne Louca", "10.5", "Shredded beef & onions in red wine sauce on a French roll"],
-    ["Chorizo Roll", "10.5", "Chorizo, onion & vinaigrette on a French roll"]
-  ], note: "Add cassava chips $4.5 · hot chips $4"},
-  "Salads": { items: [
-    ["Garden Salad", "12", "Mixed leaves, tomato, Spanish onion, capsicum & avocado", "V"],
-    ["Gourmet Avocado", "15.5", "Sautéed mushroom, zucchini & eggplant with avocado on sourdough", "V"]
-  ], note: "Add tuna, chicken or rump steak $3.5"},
-  "Sweets": { items: [
-    ["Brigadeiro", "2.5", "Classic chocolate truffle · box of 6 for $12.5"],
-    ["Pudim de Leite", "6.5", "Brazilian crème caramel"],
-    ["Churros", "5.5", "Cinnamon sugar with caramel"],
-    ["Cake of the Day", "6.5", "Ask what's fresh today"]
-  ]},
-  "Coffee": { items: [
-    ["Espresso / Macchiato", "3", ""],
-    ["Flat White · Latte · Cappuccino", "3.5", "Chai latte & hot chocolate too"],
-    ["Mocha · Tea", "4", ""],
-    ["Iced Coffee / Chocolate", "6", "With ice cream & whipped cream"],
-    ["Babycino", "2", ""]
-  ], note: "+50c large, strong, decaf, soy, almond or oat"},
-  "Juices & Shakes": { items: [
-    ["Açaí Juice", "7", "Açaí blended with banana & apple juice"],
-    ["Fruit Pulp Juices", "7", "Acerola, guava, mango, caju, papaya, passionfruit & more"],
-    ["Fresh Orange Juice", "7", "Freshly squeezed"],
-    ["Homemade Lemonade", "6.5", ""],
-    ["Smoothies", "7.5", "Banana, berry, mango, papaya, strawberry or avocado"],
-    ["Frappés", "7.5", "Mango, banana or mixed berry — dairy free"],
-    ["Milkshakes", "6.5", "Chocolate, strawberry, vanilla, caramel or banana"],
-    ["Guaraná", "3", "Can · 1L $7"]
-  ]},
-  "Bar": { items: [
-    ["Caipirinha", "14", "Lime, cachaça, sugar & ice"],
-    ["Brazilian Beer", "8", "Imported"],
-    ["Wine", "7", "Red or white, by the glass"]
-  ]}
-};
+<nav class="bar" id="bar" aria-label="Quick actions">
+  <a href="tel:0293869595"><svg><use href="#i-phone"/></svg>Call</a>
+  <a href="#menu" class="main"><svg><use href="#i-menu"/></svg>Menu</a>
+  <a href="https://maps.google.com/?q=Cafe+Brazil+195+Bondi+Road+Bondi+NSW" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Directions</a>
+</nav>
 
-const tabs = document.getElementById('tabs'), list = document.getElementById('items'), note = document.getElementById('note');
-function show(cat){
-  [...tabs.children].forEach(b => b.classList.toggle('on', b.dataset.c === cat));
-  const c = MENU[cat];
-  list.innerHTML = c.items.map(([n,p,d,t],i) => `
-    <div class="item" style="animation-delay:${i*35}ms">
-      <h4>${n}${t ? `<span class="tag">${t}</span>` : ''}</h4><span class="p">$${p}</span>
-      ${d ? `<p>${d}</p>` : ''}
-    </div>`).join('');
-  note.textContent = c.note || '';
-}
-Object.keys(MENU).forEach(cat => {
-  const b = document.createElement('button');
-  b.className = 'tab'; b.textContent = cat; b.dataset.c = cat; b.setAttribute('role','tab');
-  b.onclick = () => show(cat); tabs.appendChild(b);
+<script>
+const MENU = [
+  { id:"breakfast", name:"Breakfast", pt:"café da manhã", note:"Sides: hash brown $2 · beans, mushroom or tomato $2.5 · avocado or bacon $3.5", items:[
+    ["Big Breakfast","17","2 fried eggs, bacon, sausage, hash brown, grilled tomato, baked beans & toast"],
+    ["Special Breakfast","15.5","Up to 2 of: egg, cassava chips, Chinese broccoli or mushroom & zucchini — with rice, brown beans & vinaigrette"],
+    ["Smashed Avocado","15.5","Semi-dried tomatoes, feta & lemon on sourdough","V"],
+    ["Vegetarian Breakfast","16.5","2 fried eggs, hash brown, mushroom, zucchini, tomato, beans & toast","V"],
+    ["Açaí Bowl","12","Pure açaí with muesli & banana","V"],
+    ["Omelette","15","3 eggs, mushroom, capsicum, onion & ham, with toast"],
+    ["Eggs Any Style","9","Fried, scrambled or poached, with toast"],
+    ["Bacon & Egg Roll","8.5","With your choice of sauce"],
+    ["Misto Quente","7.5","Melted cheese & ham on a French roll"],
+    ["Pão na Chapa","4","Grilled French roll with butter"],
+    ["Vegemite Toast","5","Toasted Turkish bread, butter & Vegemite"],
+    ["Toasties","from 6.5","Up to 3 fillings: ham, cheese, tomato, chicken, avocado"]
+  ]},
+  { id:"salgados", name:"Salgados", pt:"finger food", items:[
+    ["Pão de Queijo","2.5","Brazilian cheese bread","GF"],
+    ["Coxinha","5","Chicken & potato croquette"],
+    ["Pastel","9","Crispy fried pastry — cheese or meat"],
+    ["Kibe","4.5","Bulgur wheat with minced meat"],
+    ["Rissole de Camarão","3.5","Prawn rissole"],
+    ["Bolinho de Bacalhau","3","Cod fish croquette"],
+    ["Cassava Chips","8","Hand-cut and crispy"],
+    ["Hot Chips","6.5",""]
+  ]},
+  { id:"pratos", name:"Mains", pt:"pratos", note:"Add: farofa 50c · egg $1.5 · Chinese broccoli or potato salad $2.5 · extra meat $3.5", items:[
+    ["Feijoada","19","Black bean stew with meats, rice, Chinese broccoli, farofa & orange","GF","img/feijoada.jpg"],
+    ["Prato Feito","16","Rump steak, chicken or fish with rice, brown beans & vinaigrette","","img/prato-feito.jpg"],
+    ["Moqueca de Peixe","21","Fish of the day in coconut milk & dendê, capsicum, tomato & onion, with rice","GF"],
+    ["Bobó de Camarão","20","Prawns in a creamy cassava & coconut sauce, with rice","GF"],
+    ["Chicken Strogonoff","18","Chicken & mushroom in a creamy tomato sauce, rice & potato straws","GF"],
+    ["Vegetarian Prato Feito","16","Rice, brown beans, salad & your veggie picks","GF V"]
+  ]},
+  { id:"rolls", name:"Burgers & Rolls", pt:"sanduíches", note:"Add cassava chips $4.5 · hot chips $4", items:[
+    ["X-Churrasco","12.5","Rump steak, melted cheese, mayo & lettuce on a French roll","","img/x-churrasco.jpg"],
+    ["Portuguese Chicken Roll","10.5","Chicken schnitzel, lettuce, mayo & Portuguese chilli","","img/chicken-roll.jpg"],
+    ["B.L.A.T","12.5","Bacon, lettuce, avocado & tomato on toasted Turkish"],
+    ["Chicken Burger","11.5","Chicken breast, lettuce, tomato, cheese & mayo"],
+    ["X-Burger","10.5","Beef patty, cheese, lettuce, tomato & mayo"],
+    ["Carne Louca","10.5","Shredded beef & onions in red wine sauce on a French roll"],
+    ["Chorizo Roll","10.5","Chorizo, onion & vinaigrette on a French roll"]
+  ]},
+  { id:"salads", name:"Salads", pt:"saladas", note:"Add tuna, chicken or rump steak $3.5", items:[
+    ["Garden Salad","12","Mixed leaves, tomato, Spanish onion, capsicum & avocado","V"],
+    ["Gourmet Avocado","15.5","Sautéed mushroom, zucchini & eggplant with avocado on sourdough","V"]
+  ]},
+  { id:"sweets", name:"Sweets", pt:"doces", items:[
+    ["Brigadeiro","2.5","Classic chocolate truffle · box of 6 for $12.5"],
+    ["Pudim de Leite","6.5","Brazilian crème caramel"],
+    ["Churros","5.5","Cinnamon sugar with caramel"],
+    ["Cake of the Day","6.5","Ask what's fresh today"]
+  ]},
+  { id:"coffee", name:"Coffee", pt:"cafezinho", note:"+50c large, strong, decaf, soy, almond or oat", items:[
+    ["Espresso · Macchiato","3",""],
+    ["Regular Coffee","3.5","Chai latte & hot chocolate too"],
+    ["Mocha · Tea","4",""],
+    ["Iced Coffee / Chocolate","6","With ice cream & whipped cream"],
+    ["Babycino","2",""]
+  ]},
+  { id:"drinks", name:"Juices & Shakes", pt:"sucos", items:[
+    ["Açaí Juice","7","Açaí blended with banana & apple juice"],
+    ["Fruit Pulp Juices","7","Acerola, guava, mango, caju, papaya, passionfruit & more"],
+    ["Fresh Orange Juice","7","Freshly squeezed"],
+    ["Homemade Lemonade","6.5",""],
+    ["Smoothies","7.5","Banana, berry, mango, papaya, strawberry or avocado"],
+    ["Frappés","7.5","Mango, banana or mixed berry — dairy free"],
+    ["Milkshakes","6.5","Chocolate, strawberry, vanilla, caramel or banana"],
+    ["Guaraná","3","Can · 1L $7"]
+  ]},
+  { id:"bar", name:"Bar", pt:"bebidas", items:[
+    ["Caipirinha","14","Lime, cachaça, sugar & ice"],
+    ["Brazilian Beer","8","Imported"],
+    ["Wine","7","Red or white, by the glass"]
+  ]}
+];
+
+const chips = document.getElementById('chips'), cats = document.getElementById('cats');
+const tag = t => t ? t.split(' ').map(x => `<span class="tag">${x}</span>`).join('') : '';
+chips.innerHTML = MENU.map(c => `<button class="chip" data-id="${c.id}">${c.name}</button>`).join('');
+cats.innerHTML = MENU.map(c => `
+  <div class="cat" id="cat-${c.id}">
+    <h3>${c.name} <span class="serif">${c.pt}</span></h3>
+    ${c.note ? `<p class="note">${c.note}</p>` : ''}
+    <div class="items">${c.items.map(([n,p,d,t,img]) => `
+      <div class="it">
+        ${img ? `<img class="thumb" src="${img}" alt="" loading="lazy">` : ''}
+        <div class="body">
+          <div class="top"><h4>${n}${tag(t)}</h4><span class="p">$${p}</span></div>
+          ${d ? `<p>${d}</p>` : ''}
+        </div>
+      </div>`).join('')}
+    </div>
+  </div>`).join('');
+
+chips.addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if (!b) return;
+  document.getElementById('cat-' + b.dataset.id).scrollIntoView({behavior:'smooth'});
 });
-show('Pratos');
+function setChip(id){
+  [...chips.children].forEach(b => {
+    const on = b.dataset.id === id; b.classList.toggle('on', on);
+    if (on) chips.scrollTo({left: b.offsetLeft - chips.clientWidth/2 + b.offsetWidth/2, behavior:'smooth'});
+  });
+}
+setChip(MENU[0].id);
+const spy = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setChip(e.target.id.slice(4)); }), {rootMargin:'-140px 0px -60% 0px'});
+document.querySelectorAll('.cat').forEach(c => spy.observe(c));
+
+// header + action bar on scroll
+const hdr = document.getElementById('hdr'), bar = document.getElementById('bar');
+const onScroll = () => { const y = scrollY; hdr.classList.toggle('solid', y > innerHeight * .6); bar.classList.toggle('show', y > innerHeight * .5); };
+addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+// mobile sheet
+const sheet = document.getElementById('sheet');
+const toggle = open => { sheet.classList.toggle('open', open); sheet.setAttribute('aria-hidden', !open); document.body.style.overflow = open ? 'hidden' : ''; };
+document.getElementById('burger').onclick = () => toggle(true);
+document.getElementById('close').onclick = () => toggle(false);
+sheet.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => toggle(false)));
+
+// open / closed status (Sydney time)
+(() => {
+  const now = new Date(new Date().toLocaleString('en-US', {timeZone:'Australia/Sydney'}));
+  const m = now.getHours() * 60 + now.getMinutes(), open = 8*60+30, close = 16*60+30;
+  const st = document.getElementById('status'), tx = document.getElementById('status-txt');
+  if (m >= open && m < close) tx.textContent = 'Open now · until 4:30pm';
+  else { st.classList.add('closed'); tx.textContent = m < open ? 'Opens today at 8:30am' : 'Opens tomorrow at 8:30am'; }
+})();
 
 document.getElementById('yr').textContent = new Date().getFullYear();
-const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.12});
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.1, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
